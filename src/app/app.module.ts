@@ -6,17 +6,23 @@ import { AppComponent } from './app.component';
 import { EventsModule } from './events/events.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatTabsModule } from '@angular/material/tabs';
+import { PicturesModule } from './pictures/pictures.module';
+import { FooterModule } from './footer/footer.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     EventsModule,
     BrowserAnimationsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatTabsModule,
+    PicturesModule,
+    FooterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

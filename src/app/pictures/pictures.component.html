@@ -1,0 +1,12 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxFill>    
+    <div *ngFor="let item of pictureData" fxLayout="row" fxFill>
+        <div>
+            <img width="600px" height="auto" [src]="item.pictureUrl">
+        </div>
+        <div fxLayout="row wrap" style="max-width: 20rem; padding-left: 1rem">
+            <p>
+                {{item.description}}
+            </p>
+        </div>
+    </div>
+</div>

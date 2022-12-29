@@ -1,8 +1,10 @@
-<div fxLayout="row" fxLayoutGap="10px" fxFlex="100">
-    <div *ngFor="let item of eventData" fxFlex="30">
-        <mat-card>
-            <mat-card-title>{{item.date | date:"MM/dd/yy"}} - {{item.title}}</mat-card-title>
-            <mat-card-content>{{item.desc}}</mat-card-content>
-        </mat-card>
+<div fxLayout="column">
+    <div fxLayout="row wrap" fxLayoutGap="10px" fxFill>
+        <div *ngFor="let item of eventData" fxFlex="49" fxLayoutGap="10px" class="card-div">
+            <mat-card>
+                <mat-card-title>{{item.date | date:"MM/dd/yy"}} - {{item.title}}</mat-card-title>
+                <mat-card-content>{{item.desc}}</mat-card-content>
+            </mat-card>
+        </div>
     </div>
 </div>
