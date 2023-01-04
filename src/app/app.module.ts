@@ -9,20 +9,19 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTabsModule } from '@angular/material/tabs';
 import { PicturesModule } from './pictures/pictures.module';
 import { FooterModule } from './footer/footer.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
-    AppComponent    
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    EventsModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatTabsModule,
-    PicturesModule,
-    FooterModule
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
