@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PicturesComponent } from './pictures.component';
+import { PicturesService } from './pictures.service';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,7 @@ import { PicturesComponent } from './pictures.component';
     exports: [
         PicturesComponent
     ],
-    providers: [],
+    providers: [PicturesService],
     bootstrap: []
 })
 export class PicturesModule { }

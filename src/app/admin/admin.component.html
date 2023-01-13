@@ -1,1 +1,37 @@
-<p>admin works!</p>
+<h1>Events</h1>
+    <div fxLayout="column" fxFlex="100">
+        <div *ngFor="let event of eventData" fxLayout="row"  fxLayoutGap="1rem">
+            <div fxFlex="10">
+                <mat-form-field appearance="fill">
+                    <mat-label>Event date</mat-label>
+                    <input matInput [matDatepicker]="eventPicker" [min]="minDate" [(ngModel)]="event.date">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="eventPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #eventPicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div fxFlex="10">
+                <mat-form-field appearance="fill" >
+                    <mat-label>Event Time</mat-label>
+                    <input matTimepicker mode="12h" [ngModel]="event.date">
+                </mat-form-field>
+            </div>
+            <div fxFlex="20">
+                <mat-form-field appearance="fill" >
+                    <mat-label>Event Title</mat-label>
+                    <input matInput [(ngModel)]="event.title">
+                </mat-form-field>
+            </div>
+            <div fxFlex>
+                <mat-form-field appearance="fill">
+                    <mat-label>Event Description</mat-label>
+                    <textarea matInput [(ngModel)]="event.description"></textarea>
+                </mat-form-field>
+            </div>
+            <div fxFlex="10">
+                <button mat-icon-button color="warn">
+                     <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>

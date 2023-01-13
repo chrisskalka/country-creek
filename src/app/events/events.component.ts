@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Events } from './events.model';
+import { EventsService } from './events.service';
 
 @Component({
   selector: 'events',
@@ -8,40 +10,45 @@ import { Component, OnInit } from '@angular/core';
 
 export class EventsComponent implements OnInit {
 
-  public eventData = [{
-    date: new Date('12-21-2022'),
-    title: 'Fishing',
-    desc: 'Come fishing at the ponds'
-  },
-  {
-    date: new Date('12-26-2022'),
-    title: 'Sky diving',
-    desc: 'Jump out of planes'
-  },
-  {
-    date: new Date('12-21-2022'),
-    title: 'Fishing',
-    desc: 'Come fishing at the ponds'
-  },
-  {
-    date: new Date('12-26-2022'),
-    title: 'Sky diving',
-    desc: 'Jump out of planes'
-  },
-  {
-    date: new Date('12-21-2022'),
-    title: 'Fishing',
-    desc: 'Come fishing at the ponds'
-  },
-  {
-    date: new Date('12-26-2022'),
-    title: 'Sky diving',
-    desc: 'Jump out of planes'
-  }];
+  eventData: Events[] = [];
+  // public eventData = [{
+  //   date: new Date('12-21-2022'),
+  //   title: 'Fishing',
+  //   desc: 'Come fishing at the ponds'
+  // },
+  // {
+  //   date: new Date('12-26-2022'),
+  //   title: 'Sky diving',
+  //   desc: 'Jump out of planes'
+  // },
+  // {
+  //   date: new Date('12-21-2022'),
+  //   title: 'Fishing',
+  //   desc: 'Come fishing at the ponds'
+  // },
+  // {
+  //   date: new Date('12-26-2022'),
+  //   title: 'Sky diving',
+  //   desc: 'Jump out of planes'
+  // },
+  // {
+  //   date: new Date('12-21-2022'),
+  //   title: 'Fishing',
+  //   desc: 'Come fishing at the ponds'
+  // },
+  // {
+  //   date: new Date('12-26-2022'),
+  //   title: 'Sky diving',
+  //   desc: 'Jump out of planes'
+  // }];
 
-  constructor() { }
+   constructor(private eventSvc: EventsService) { }
 
   ngOnInit(): void {
+    this.eventSvc.getEvents().subscribe(resp => {
+      this.eventData = resp;
+    })
   }
+
 
 }
