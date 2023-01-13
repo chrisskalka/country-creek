@@ -14,6 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { EventsService } from 'src/app/events/events.service';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import { MatDividerModule } from '@angular/material/divider';
+import { PicturesService } from '../pictures/pictures.service';
 
 @NgModule({
   declarations: [
@@ -32,12 +34,16 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatButtonModule,
     MatNativeDateModule,
-    FormsModule
+    FormsModule,
+    MatDividerModule
   ],
   exports: [
     AdminComponent
   ],
-  providers: [EventsService],
+  providers: [
+    EventsService, 
+    PicturesService
+  ],
   bootstrap: []
 })
 export class AdminModule { }

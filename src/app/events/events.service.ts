@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Events } from "./events.model";
+import { Event } from "./events.model";
 
 @Injectable()
 export class EventsService{
@@ -12,7 +12,15 @@ export class EventsService{
         this.baseUrl = `${environment.urlApiRoot}events`;
     }
 
-    getEvents(): Observable<Events[]>{
-        return this.http.get<Events[]>(`${this.baseUrl}`);
+    getEvents(): Observable<Event[]>{
+        return this.http.get<Event[]>(`${this.baseUrl}`);
+    }
+
+    saveEvents(events: Event[]): Observable<boolean>{
+        return this.http.post<boolean>(this.baseUrl, events);
+    }
+
+    deleteEvent(id: Number): Observable<null>{
+        return this.http.delete<null>(this.baseUrl + "/" + id);
     }
 }

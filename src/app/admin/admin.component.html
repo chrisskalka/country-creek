@@ -1,37 +1,68 @@
-<h1>Events</h1>
-    <div fxLayout="column" fxFlex="100">
-        <div *ngFor="let event of eventData" fxLayout="row"  fxLayoutGap="1rem">
-            <div fxFlex="10">
-                <mat-form-field appearance="fill">
-                    <mat-label>Event date</mat-label>
-                    <input matInput [matDatepicker]="eventPicker" [min]="minDate" [(ngModel)]="event.date">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matSuffix [for]="eventPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #eventPicker></mat-datepicker>
-                </mat-form-field>
-            </div>
-            <div fxFlex="10">
-                <mat-form-field appearance="fill" >
-                    <mat-label>Event Time</mat-label>
-                    <input matTimepicker mode="12h" [ngModel]="event.date">
-                </mat-form-field>
-            </div>
-            <div fxFlex="20">
-                <mat-form-field appearance="fill" >
-                    <mat-label>Event Title</mat-label>
-                    <input matInput [(ngModel)]="event.title">
-                </mat-form-field>
-            </div>
-            <div fxFlex>
-                <mat-form-field appearance="fill">
-                    <mat-label>Event Description</mat-label>
-                    <textarea matInput [(ngModel)]="event.description"></textarea>
-                </mat-form-field>
-            </div>
-            <div fxFlex="10">
-                <button mat-icon-button color="warn">
-                     <mat-icon>delete</mat-icon>
-                </button>
-            </div>
+<div fxLayout="column" fxFlex="100" style="margin-left: 20px">
+    <h1>Events</h1>
+    <div *ngFor="let event of eventData" fxLayout="row" fxLayoutGap="1rem">
+        <div fxFlex="10">
+            <mat-form-field appearance="fill">
+                <mat-label>Event date</mat-label>
+                <input matInput [matDatepicker]="eventPicker" [min]="minDate" [(ngModel)]="event.date">
+                <mat-datepicker-toggle matSuffix [for]="eventPicker"></mat-datepicker-toggle>
+                <mat-datepicker #eventPicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div fxFlex="10">
+            <mat-form-field appearance="fill">
+                <mat-label>Event Time</mat-label>
+                <input matTimepicker mode="12h" [ngModel]="event.date"
+                    (ngModelChange)="updateEventTime(event.id, $event)">
+            </mat-form-field>
+        </div>
+        <div fxFlex="20">
+            <mat-form-field appearance="fill">
+                <mat-label>Event Title</mat-label>
+                <input matInput [(ngModel)]="event.title" autocomplete="off">
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <mat-form-field appearance="fill">
+                <mat-label>Event Description</mat-label>
+                <textarea matInput [(ngModel)]="event.description" autocomplete="off"></textarea>
+            </mat-form-field>
+        </div>
+        <div fxFlex="5">
+            <button mat-icon-button color="warn" (click)="deleteEvent(event.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
         </div>
     </div>
+    <div style="margin-bottom: 1.5rem">
+        <button mat-raised-button color="primary" (click)="addEvent()" [disabled]="isAddDisabled()">Add Event</button>
+        <button mat-raised-button color="primary" (click)="saveEvents()" style="margin-left: 1rem">Save Events</button>
+    </div>
+    <mat-divider></mat-divider>
+    <h1>Pictures</h1>
+    <div *ngFor="let picture of pictureData" fxLayout="row" style="margin-bottom: 1.5rem">
+        <div fxFlex>
+            <input name="imageUrl" type="file" accept="image/*" style="display: none"
+                (change)="onFileChanged($event, picture.id)" #imageSelect>
+            <button mat-raised-button (click)="onImageClicked(picture.id)">
+                <img *ngIf="picture.image != ''" width="600px" height="auto" [src]="picture.image" style="cursor: pointer">
+                <span *ngIf="picture.image == ''">Browse Computer</span>
+            </button>
+        </div>
+        <div fxFlex="40">
+            <textarea matInput [(ngModel)]="picture.description" autocomplete="off" placeholder="Description"
+                style="background-color: rgba(0,0,0,.04)"></textarea>
+        </div>
+        <div fxFlex="5">
+            <button mat-icon-button color="warn" (click)="deletePicture(picture.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div style="margin-bottom: 1.5rem">
+        <button mat-raised-button color="primary" (click)="addPicture()" [disabled]="isAddPictureDisabled()">Add
+            Picture</button>
+        <button mat-raised-button color="primary" (click)="savePictures()" style="margin-left: 1rem">Save
+            Pictures</button>
+    </div>
+</div>

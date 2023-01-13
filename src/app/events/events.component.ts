@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Events } from './events.model';
+import { Event } from './events.model';
 import { EventsService } from './events.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { EventsService } from './events.service';
 
 export class EventsComponent implements OnInit {
 
-  eventData: Events[] = [];
+  eventData: Event[] = [];
   // public eventData = [{
   //   date: new Date('12-21-2022'),
   //   title: 'Fishing',

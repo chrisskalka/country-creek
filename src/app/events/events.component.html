@@ -2,7 +2,7 @@
     <div fxLayout="row wrap" fxLayoutGap="10px" fxFill>
         <div *ngFor="let item of eventData" fxFlex="49" fxLayoutGap="10px" class="card-div">
             <mat-card>
-                <mat-card-title>{{item.date | date:"MM/dd/yy"}} - {{item.title}}</mat-card-title>
+                <mat-card-title>{{item.date | date:"MMMM d, y, h:mm:ss a"}} - {{item.title}}</mat-card-title>
                 <mat-card-content>{{item.description}}</mat-card-content>
             </mat-card>
         </div>

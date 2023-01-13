@@ -1,5 +1,5 @@
-export class Pictures{
-    id: Number = 0;
-    description: String = '';
+export class Picture{
+    id: number = 0;
+    description: string = '';
     image: string = '';
 }
