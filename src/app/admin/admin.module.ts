@@ -16,6 +16,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { PicturesService } from '../pictures/pictures.service';
+import { MatTableModule } from '@angular/material/table';
+import { LoginService } from '../login/login.service';
 
 @NgModule({
   declarations: [
@@ -35,14 +37,16 @@ import { PicturesService } from '../pictures/pictures.service';
     MatButtonModule,
     MatNativeDateModule,
     FormsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTableModule
   ],
   exports: [
     AdminComponent
   ],
   providers: [
-    EventsService, 
-    PicturesService
+    EventsService,
+    PicturesService,
+    LoginService
   ],
   bootstrap: []
 })

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FooterComponent } from './footer.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -11,7 +12,8 @@ import { FooterComponent } from './footer.component';
     imports: [
         CommonModule,
         MatCardModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        RouterModule
     ],
     exports: [
         FooterComponent

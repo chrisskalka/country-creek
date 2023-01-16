@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Event } from '../events/events.model';
 import { EventsService } from '../events/events.service';
+import { LoginService } from '../login/login.service';
+import { UserData } from '../login/userdata.model';
 import { Picture } from '../pictures/pictures.model';
 import { PicturesService } from '../pictures/pictures.service';
 
@@ -18,14 +20,18 @@ export class AdminComponent implements OnInit {
   private originalPictureData: Picture[] = [];
   private idxUpload: number = -1;
   private pictureIdClicked: number = -1;
+  displayedColumns: string[] = ['firstName', 'lastName', 'delete'];
+  public userData: UserData[] = [];
 
   @ViewChild('imageSelect') imageInputRef!: ElementRef;
   
-  constructor(private eventSvc: EventsService, private pictureSvc: PicturesService) { }
+  constructor(private eventSvc: EventsService, private pictureSvc: PicturesService, private loginSvc: LoginService) { }
 
   ngOnInit(): void {
     this.getEvents();
     this.getPictures();
+    this.getUsers();
+    
   }
 
   private getEvents() {
@@ -178,4 +184,23 @@ export class AdminComponent implements OnInit {
 
     return false;
   }
+
+  //User data
+  getUsers(){
+    this.loginSvc.getUsers().subscribe(resp =>{
+      resp.forEach(user => {
+        var newUser: UserData = new UserData();
+        newUser.firstName = user.firstName;
+        newUser.lastName = user.lastName;
+        newUser.id = user.id;
+        this.userData.push(newUser);
+      })
+    })
+  }
+
+  deleteUser(id: number){
+
+  }
+
+
 }
