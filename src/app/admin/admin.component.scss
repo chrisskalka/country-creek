@@ -1,3 +1,27 @@
 mat-form-field {
     width: 100%;
   }
+
+.mat-column-firstName{
+  padding-right: 3rem;
+  padding-left: 1rem;
+}
+
+.mat-column-lastName{
+  padding-right: 3rem;
+  padding-left: 1rem;
+}
+
+.mat-column-userName{
+  padding-right: 3rem;
+  padding-left: 1rem;
+}
+
+.mat-header-cell{
+  margin: 1rem;
+}
+
+.new-user-input{
+  // border-bottom: 1px solid gray;
+  // margin-right: 1rem;
+}

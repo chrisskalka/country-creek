@@ -8,6 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { AdminModule } from './admin/admin.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AuthGuardService } from './service/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     HttpClientModule,
     MatNativeDateModule
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { UserData } from "./userdata.model";
 
@@ -18,5 +18,13 @@ export class LoginService{
 
     getUsers(): Observable<UserData[]>{
         return this.http.get<UserData[]>(this.baseUrl);
+    }
+
+    newUser(userData: UserData): Observable<HttpResponse<Object>>{
+        return this.http.post(this.baseUrl + "/NewUser", userData, {observe: 'response'});
+    }
+
+    deleteUser(userId: number): Observable<HttpResponse<Object>>{
+        return this.http.delete(`${this.baseUrl}/${userId}`, {observe: 'response'});
     }
 }
