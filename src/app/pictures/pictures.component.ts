@@ -18,4 +18,18 @@ export class PicturesComponent implements OnInit {
       this.pictureData = resp;
     })
   }
+
+  shouldBeDisplayed(idx: number, pos: number) {
+    if (idx % 2 == 0) {
+      if (pos == 0) {
+        return true;
+      }
+    }else{
+      if(pos == 1){
+        return true;
+      }
+    }
+
+    return false;
+  }
 }

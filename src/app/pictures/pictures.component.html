@@ -1,12 +1,24 @@
-<div fxLayout="column" fxLayoutAlign="center center" fxFill>    
-    <div *ngFor="let item of pictureData" fxLayout="row" fxFill>
-        <div>
-            <img width="600px" height="auto" [src]="item.image">
+<div fxLayout="column" fxLayoutAlign="center center" fxFill >
+    <div *ngFor="let item of pictureData; let i = index" fxLayout="row" fxFill >
+        <div *ngIf="shouldBeDisplayed(i, 0)" style="margin-top: 2rem; margin-left: 2rem; margin-right: 2rem" fxLayoutAlign="center top">
+            <div>
+                <img width="600px" height="auto" [src]="item.image">
+            </div>
+            <div style="padding-left: 1.5rem" fxFlex="30">
+                <p>
+                    {{item.description}}
+                </p>
+            </div>
         </div>
-        <div fxLayout="row wrap" style="max-width: 20rem; padding-left: 1rem">
-            <p>
-                {{item.description}}
-            </p>
+        <div *ngIf="shouldBeDisplayed(i, 1)" style="margin-top: 2rem; margin-left: 2rem; margin-right: 2rem"  fxLayoutAlign="center top">
+            <div style="padding-right: 1.5rem" fxFlex="30">
+                <p>
+                    {{item.description}}
+                </p>
+            </div>
+            <div >
+                <img width="600px" height="auto" [src]="item.image" fxFlex>
+            </div>
         </div>
     </div>
 </div>
