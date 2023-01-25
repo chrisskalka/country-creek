@@ -4,6 +4,7 @@ import { EventsComponent } from './events.component';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { EventsService } from './events.service';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { EventsService } from './events.service';
   imports: [
     CommonModule,
     MatCardModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatGridListModule
   ],
   exports: [
     EventsComponent

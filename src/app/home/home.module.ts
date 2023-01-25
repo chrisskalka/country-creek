@@ -8,6 +8,7 @@ import { FooterModule } from '../footer/footer.module';
 import { PicturesModule } from '../pictures/pictures.module';
 import { EventsModule } from '../events/events.module';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { MatTabsModule } from '@angular/material/tabs';
         PicturesModule,
         FooterModule,
         EventsModule,
-        MatTabsModule,    
+        MatTabsModule,
+        MatDividerModule
     ],
     exports: [
         HomeComponent
