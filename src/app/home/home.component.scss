@@ -44,3 +44,30 @@ body { background: lightgray; }
     background-image: -o-linear-gradient(180deg, #000, transparent);
     background-image: linear-gradient(90deg, #000, transparent);
 }
+
+.card {
+    padding: 16px;
+    margin: 24px;
+    border-radius: 2px;
+    background-color: #fff;
+    color: rgba(0,0,0,0.87);
+    box-shadow: 
+      0 2px 2px 0 rgba(0, 0, 0, 0.14), 
+      0 1px 5px 0 rgba(0, 0, 0, 0.12), 
+      0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    
+    .card-title {    
+      padding: 24px 16px 8px;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 32px;
+    }
+    
+    p {
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.010em;
+      line-height: 1.6em;
+      padding: 0 16px;
+    }  
+  }
