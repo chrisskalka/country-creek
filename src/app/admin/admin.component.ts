@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
+import { Title } from '@angular/platform-browser';
 import { Event } from '../events/events.model';
 import { EventsService } from '../events/events.service';
 import { LoginService } from '../login/login.service';
@@ -31,9 +32,11 @@ export class AdminComponent implements OnInit {
   @ViewChild('imageSelect') imageInputRef!: ElementRef;
   @ViewChild('userTable') userTableRef!: MatTable<any>;
 
-  constructor(private eventSvc: EventsService, private pictureSvc: PicturesService, private loginSvc: LoginService) { }
+  constructor(private eventSvc: EventsService, private pictureSvc: PicturesService, private loginSvc: LoginService, private titleService: Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Country Creek - Admin");
+    
     this.getEvents();
     this.getPictures();
     this.getUsers();
