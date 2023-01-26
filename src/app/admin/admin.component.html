@@ -1,4 +1,4 @@
-<div fxLayout="column" fxFlex="100" style="margin-left: 2rem; margin-right: 2rem">
+<div fxLayout="column" fxFlex="100" style="margin-left: 2rem; margin-right: 2rem; background-color: white;">
     <h1>Events</h1>
     <div *ngFor="let event of eventData" fxLayout="row" fxLayoutGap="1rem">
         <div fxFlex="10">
@@ -52,7 +52,7 @@
         </div>
         <div fxFlex="40">
             <textarea matInput [(ngModel)]="picture.description" autocomplete="off" placeholder="Description"
-                style="background-color: rgba(0,0,0,.04)"></textarea>
+                style="background-color: rgba(0,0,0,.04); height: 20rem;"></textarea>
         </div>
         <div fxFlex="5">
             <button mat-icon-button color="warn" (click)="deletePicture(picture.id)">

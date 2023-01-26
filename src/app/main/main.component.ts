@@ -11,7 +11,7 @@ export class MainComponent implements OnInit {
   
   @HostListener('window:scroll', ['$event'])
   checkScroll() {
-    this.isSticky = window.pageYOffset >= 200;
+    this.isSticky = window.pageYOffset >= 400;
   }
 
   constructor() { }

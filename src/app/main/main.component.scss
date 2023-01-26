@@ -5,11 +5,13 @@
   }
   
   #header {
-    height: 12rem;
+    height: 400px;
     width: 100%;
     //top: 50px;
     position: relative;
     background: #2ab4c0;
+    background-image: url("../../assets/Sign.png");
+    background-size: cover;
   }
   
   .mat-elevation-z5 {
