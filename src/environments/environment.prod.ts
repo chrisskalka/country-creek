@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  urlApiRoot: 'http://api.countrycreeksubdivision.com/api/api/'  
 };

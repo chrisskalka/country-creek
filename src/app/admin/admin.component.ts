@@ -48,12 +48,12 @@ export class AdminComponent implements OnInit {
       this.eventData = [];
       resp.forEach(event => {
         var newEvent = new Event();
-        var tempDate = new Date(event.date);
+        var tempDate = new Date(event.Date);
         var userTimezone = tempDate.getTimezoneOffset() * 60000;
         newEvent.date = new Date(tempDate.getTime() - userTimezone);
-        newEvent.description = event.description;
-        newEvent.title = event.title;
-        newEvent.id = event.id;
+        newEvent.description = event.Description;
+        newEvent.title = event.Title;
+        newEvent.id = event.Id;
         this.eventData.push(newEvent);
       });
 
@@ -119,7 +119,14 @@ export class AdminComponent implements OnInit {
   //Pictures
   private getPictures() {
     this.pictureSvc.getPictures().subscribe(resp => {
-      this.pictureData = resp;
+      this.pictureData = [];
+      resp.forEach(pic => {
+        var newPic: Picture = new Picture();
+        newPic.id = pic.Id;
+        newPic.description = pic.Description;
+        newPic.image = pic.Image;
+        this.pictureData.push(newPic);
+      })
       this.originalPictureData = JSON.parse(JSON.stringify(this.pictureData));
     })
   }
@@ -200,10 +207,10 @@ export class AdminComponent implements OnInit {
       this.userData = [];
       resp.forEach(user => {
         var newUser: UserData = new UserData();
-        newUser.firstName = user.firstName;
-        newUser.lastName = user.lastName;
-        newUser.id = user.id;
-        newUser.userName = user.userName;
+        newUser.firstName = user.FirstName;
+        newUser.lastName = user.LastName;
+        newUser.id = user.Id;
+        newUser.userName = user.UserName;
         this.userData.push(newUser);
       })
 

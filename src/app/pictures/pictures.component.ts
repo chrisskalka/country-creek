@@ -15,7 +15,14 @@ export class PicturesComponent implements OnInit {
 
   ngOnInit(): void {
     this.pictureSvc.getPictures().subscribe(resp => {
-      this.pictureData = resp;
+      this.pictureData = [];
+      resp.forEach(pic => {
+        var newPic: Picture = new Picture();
+        newPic.id = pic.Id;
+        newPic.description = pic.Description;
+        newPic.image = pic.Image;
+        this.pictureData.push(newPic);
+      })
     })
   }
 

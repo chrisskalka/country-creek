@@ -16,8 +16,8 @@ export class LoginService{
         return this.http.post(this.baseUrl, login, { observe: 'response' });
     }
 
-    getUsers(): Observable<UserData[]>{
-        return this.http.get<UserData[]>(this.baseUrl);
+    getUsers(): Observable<any[]>{
+        return this.http.get<any[]>(this.baseUrl);
     }
 
     newUser(userData: UserData): Observable<HttpResponse<Object>>{

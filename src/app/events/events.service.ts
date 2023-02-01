@@ -12,8 +12,8 @@ export class EventsService{
         this.baseUrl = `${environment.urlApiRoot}events`;
     }
 
-    getEvents(): Observable<Event[]>{
-        return this.http.get<Event[]>(`${this.baseUrl}`);
+    getEvents(): Observable<any[]>{
+        return this.http.get<any[]>(`${this.baseUrl}`);
     }
 
     saveEvents(events: Event[]): Observable<boolean>{

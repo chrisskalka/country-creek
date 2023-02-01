@@ -12,8 +12,8 @@ export class PicturesService {
         this.baseUrl = `${environment.urlApiRoot}picture`;
     }
 
-    getPictures(): Observable<Picture[]> {
-        return this.http.get<Picture[]>(`${this.baseUrl}`);
+    getPictures(): Observable<any[]> {
+        return this.http.get<any[]>(`${this.baseUrl}`);
     }
 
     savePictures(pictures: Picture[]): Observable<null> {
