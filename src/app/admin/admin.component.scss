@@ -21,7 +21,10 @@ mat-form-field {
   margin: 1rem;
 }
 
-.new-user-input{
-  // border-bottom: 1px solid gray;
-  // margin-right: 1rem;
+.sticky {
+  z-index:999;
+  background: #2ab4c0;
+  position: fixed;
+  top: 0px;
+  width: 100%;
 }

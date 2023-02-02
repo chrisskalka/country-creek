@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { PicturesService } from '../pictures/pictures.service';
 import { MatTableModule } from '@angular/material/table';
-import { LoginService } from '../login/login.service';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { LoginService } from '../login/login.service';
   providers: [
     EventsService,
     PicturesService,
-    LoginService
+    UserService
   ],
   bootstrap: []
 })

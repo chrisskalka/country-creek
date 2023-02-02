@@ -3,10 +3,11 @@ import { MatTable } from '@angular/material/table';
 import { Title } from '@angular/platform-browser';
 import { Event } from '../events/events.model';
 import { EventsService } from '../events/events.service';
-import { LoginService } from '../login/login.service';
+import { UserService } from './user.service';
 import { UserData } from '../login/userdata.model';
 import { Picture } from '../pictures/pictures.model';
 import { PicturesService } from '../pictures/pictures.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -32,7 +33,8 @@ export class AdminComponent implements OnInit {
   @ViewChild('imageSelect') imageInputRef!: ElementRef;
   @ViewChild('userTable') userTableRef!: MatTable<any>;
 
-  constructor(private eventSvc: EventsService, private pictureSvc: PicturesService, private loginSvc: LoginService, private titleService: Title) { }
+  constructor(private eventSvc: EventsService, private pictureSvc: PicturesService, private userSvc: UserService,
+     private titleService: Title, private router: Router) { }
 
   ngOnInit(): void {
     this.titleService.setTitle("Country Creek - Admin");
@@ -203,7 +205,7 @@ export class AdminComponent implements OnInit {
 
   //User data
   getUsers() {
-    this.loginSvc.getUsers().subscribe(resp => {
+    this.userSvc.getUsers().subscribe(resp => {
       this.userData = [];
       resp.forEach(user => {
         var newUser: UserData = new UserData();
@@ -219,7 +221,7 @@ export class AdminComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-    this.loginSvc.deleteUser(id).subscribe(resp => {
+    this.userSvc.deleteUser(id).subscribe(resp => {
       this.getUsers();
     })
   }
@@ -241,7 +243,7 @@ export class AdminComponent implements OnInit {
       tempUser.firstName = this.newUser.firstName;
       tempUser.lastName = this.newUser.lastName;
 
-      this.loginSvc.newUser(tempUser).subscribe(resp => {
+      this.userSvc.newUser(tempUser).subscribe(resp => {
         this.newUser = new UserData();
         this.displayAddNewUser = false;
         this.getUsers();
@@ -284,5 +286,10 @@ export class AdminComponent implements OnInit {
 
     this.passwordError = false;
     return true;
+  }
+
+  logout(){
+    sessionStorage.removeItem('ccLoginToken');
+    this.router.navigate(['']);
   }
 }

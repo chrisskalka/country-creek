@@ -1,73 +1,85 @@
-<div fxLayout="column" fxFlex="100" style="margin-left: 2rem; margin-right: 2rem; background-color: white;">
-    <h1>Events</h1>
-    <div *ngFor="let event of eventData" fxLayout="row" fxLayoutGap="1rem">
-        <div fxFlex="10">
-            <mat-form-field appearance="fill">
-                <mat-label>Event date</mat-label>
-                <input matInput [matDatepicker]="eventPicker" [min]="minDate" [(ngModel)]="event.date">
-                <mat-datepicker-toggle matSuffix [for]="eventPicker"></mat-datepicker-toggle>
-                <mat-datepicker #eventPicker></mat-datepicker>
-            </mat-form-field>
+<div class="sticky" fxLayoutAlign="end center" fxFlex>
+    <button mat-raised-button color="warn" (click)="logout()"
+        style="margin-left: 1rem; margin-right: 1rem; margin-top: .8rem; margin-bottom: .8rem">Logout</button>
+</div>
+
+<div fxLayout="column" fxFlex="100"
+    style="margin-left: 2rem; margin-right: 2rem; margin-top: 4.5rem; background-color: white;">
+    <div style="margin-left: 1.5rem; margin-right: 1.5rem">
+        <h1>Events</h1>
+        <div *ngFor="let event of eventData" fxLayout="row" fxLayoutGap="1rem">
+            <div fxFlex="10">
+                <mat-form-field appearance="fill">
+                    <mat-label>Event date</mat-label>
+                    <input matInput [matDatepicker]="eventPicker" [min]="minDate" [(ngModel)]="event.date">
+                    <mat-datepicker-toggle matSuffix [for]="eventPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #eventPicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div fxFlex="10">
+                <mat-form-field appearance="fill">
+                    <mat-label>Event Time</mat-label>
+                    <input matTimepicker mode="12h" [ngModel]="event.date"
+                        (ngModelChange)="updateEventTime(event.id, $event)">
+                </mat-form-field>
+            </div>
+            <div fxFlex="20">
+                <mat-form-field appearance="fill">
+                    <mat-label>Event Title</mat-label>
+                    <input matInput [(ngModel)]="event.title" autocomplete="off">
+                </mat-form-field>
+            </div>
+            <div fxFlex>
+                <mat-form-field appearance="fill">
+                    <mat-label>Event Description</mat-label>
+                    <textarea matInput [(ngModel)]="event.description" autocomplete="off"></textarea>
+                </mat-form-field>
+            </div>
+            <div fxFlex="5">
+                <button mat-icon-button color="warn" (click)="deleteEvent(event.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
         </div>
-        <div fxFlex="10">
-            <mat-form-field appearance="fill">
-                <mat-label>Event Time</mat-label>
-                <input matTimepicker mode="12h" [ngModel]="event.date"
-                    (ngModelChange)="updateEventTime(event.id, $event)">
-            </mat-form-field>
+        <div style="margin-bottom: 1.5rem">
+            <button mat-raised-button color="primary" (click)="addEvent()" [disabled]="isAddDisabled()">Add
+                Event</button>
+            <button mat-raised-button color="primary" (click)="saveEvents()" style="margin-left: 1rem">Save
+                Events</button>
         </div>
-        <div fxFlex="20">
-            <mat-form-field appearance="fill">
-                <mat-label>Event Title</mat-label>
-                <input matInput [(ngModel)]="event.title" autocomplete="off">
-            </mat-form-field>
-        </div>
-        <div fxFlex>
-            <mat-form-field appearance="fill">
-                <mat-label>Event Description</mat-label>
-                <textarea matInput [(ngModel)]="event.description" autocomplete="off"></textarea>
-            </mat-form-field>
-        </div>
-        <div fxFlex="5">
-            <button mat-icon-button color="warn" (click)="deleteEvent(event.id)">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </div>
-    </div>
-    <div style="margin-bottom: 1.5rem">
-        <button mat-raised-button color="primary" (click)="addEvent()" [disabled]="isAddDisabled()">Add Event</button>
-        <button mat-raised-button color="primary" (click)="saveEvents()" style="margin-left: 1rem">Save Events</button>
     </div>
     <mat-divider></mat-divider>
-    <h1>Pictures</h1>
-    <div *ngFor="let picture of pictureData" fxLayout="row" style="margin-bottom: 1.5rem">
-        <div fxFlex>
-            <input name="imageUrl" type="file" accept="image/*" style="display: none"
-                (change)="onFileChanged($event, picture.id)" #imageSelect>
-            <button mat-raised-button (click)="onImageClicked(picture.id)">
-                <img *ngIf="picture.image != ''" width="600px" height="auto" [src]="picture.image"
-                    style="cursor: pointer">
-                <span *ngIf="picture.image == ''">Browse Computer</span>
-            </button>
+    <div style="margin-left: 1.5rem; margin-right: 1.5rem">
+        <h1>Pictures</h1>
+        <div *ngFor="let picture of pictureData" fxLayout="row" style="margin-bottom: 1.5rem">
+            <div fxFlex>
+                <input name="imageUrl" type="file" accept="image/*" style="display: none"
+                    (change)="onFileChanged($event, picture.id)" #imageSelect>
+                <button mat-raised-button (click)="onImageClicked(picture.id)">
+                    <img *ngIf="picture.image != ''" width="600px" height="auto" [src]="picture.image"
+                        style="cursor: pointer">
+                    <span *ngIf="picture.image == ''">Browse Computer</span>
+                </button>
+            </div>
+            <div fxFlex="40">
+                <textarea matInput [(ngModel)]="picture.description" autocomplete="off" placeholder="Description"
+                    style="background-color: rgba(0,0,0,.04); height: 20rem;"></textarea>
+            </div>
+            <div fxFlex="5">
+                <button mat-icon-button color="warn" (click)="deletePicture(picture.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
         </div>
-        <div fxFlex="40">
-            <textarea matInput [(ngModel)]="picture.description" autocomplete="off" placeholder="Description"
-                style="background-color: rgba(0,0,0,.04); height: 20rem;"></textarea>
+        <div style="margin-bottom: 1.5rem">
+            <button mat-raised-button color="primary" (click)="addPicture()" [disabled]="isAddPictureDisabled()">Add
+                Picture</button>
+            <button mat-raised-button color="primary" (click)="savePictures()" style="margin-left: 1rem">Save
+                Pictures</button>
         </div>
-        <div fxFlex="5">
-            <button mat-icon-button color="warn" (click)="deletePicture(picture.id)">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </div>
-    </div>
-    <div style="margin-bottom: 1.5rem">
-        <button mat-raised-button color="primary" (click)="addPicture()" [disabled]="isAddPictureDisabled()">Add
-            Picture</button>
-        <button mat-raised-button color="primary" (click)="savePictures()" style="margin-left: 1rem">Save
-            Pictures</button>
     </div>
     <mat-divider></mat-divider>
-    <div style="margin-top: 1.5rem">
+    <div style="margin: 1.5rem">
         <h1>Administrators</h1>
         <table mat-table [dataSource]="userData" *ngIf="userData.length > 0" class="mat-elevation-z8" #userTable>
             <!--First Name Column-->
@@ -98,7 +110,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </div>
-    <div *ngIf="displayAddNewUser" fxLayout="row" fxLayoutGap="1rem" style="margin-top: 1.5rem" >
+    <div *ngIf="displayAddNewUser" fxLayout="row" fxLayoutGap="1rem" style="margin-top: 1.5rem">
         <div fxFlex="23">
             <mat-form-field>
                 <input matInput [(ngModel)]="newUser.firstName" placeholder="First Name" autocomplete="off"
@@ -130,7 +142,7 @@
     <div>
         <label *ngIf="passwordError" style="color:red">{{passwordErrorStr}}</label>
     </div>
-    <div style="margin-top: 1.5rem">
+    <div style="margin: 1.5rem">
         <button mat-raised-button color="primary" (click)="addUserClicked()" [disabled]="isAddUserDisabled()">Add
             New Administrator</button>
     </div>
