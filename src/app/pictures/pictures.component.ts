@@ -10,10 +10,15 @@ import { PicturesService } from './pictures.service';
 export class PicturesComponent implements OnInit {
 
   public pictureData: Picture[] = [];
+  public isMobile: boolean = false;
 
   constructor(private pictureSvc: PicturesService) { }
 
   ngOnInit(): void {
+    if (window.screen.width <= 420) {
+      this.isMobile = true;
+    }
+
     this.pictureSvc.getPictures().subscribe(resp => {
       this.pictureData = [];
       resp.forEach(pic => {
@@ -31,8 +36,8 @@ export class PicturesComponent implements OnInit {
       if (pos == 0) {
         return true;
       }
-    }else{
-      if(pos == 1){
+    } else {
+      if (pos == 1) {
         return true;
       }
     }

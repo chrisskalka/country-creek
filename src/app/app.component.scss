@@ -1,12 +1,18 @@
-.main-div{
+.main-div {
     margin: 1rem
 }
 
-h1{
+@media only screen and (min-width: 0px) and (max-width: 620px) {
+    .main-div {
+        margin: .1rem
+    }
+}
+
+h1 {
     font-size: xx-large;
     font-weight: bolder;
 }
 
-.mat-tab-label{
+.mat-tab-label {
     font-size: 20px !important;
- } 
+}

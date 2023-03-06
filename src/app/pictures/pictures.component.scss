@@ -1,3 +1,9 @@
-.picture-card{
+.picture-card {
     max-width: 600px;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 620px) {
+    .picture-card {
+        max-width: 350px;
+    }
 }

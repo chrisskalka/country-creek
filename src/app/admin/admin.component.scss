@@ -1,30 +1,34 @@
 mat-form-field {
-    width: 100%;
-  }
+  width: 100%;
+}
 
-.mat-column-firstName{
+.mat-column-firstName {
   padding-right: 3rem;
   padding-left: 1rem;
 }
 
-.mat-column-lastName{
+.mat-column-lastName {
   padding-right: 3rem;
   padding-left: 1rem;
 }
 
-.mat-column-userName{
+.mat-column-userName {
   padding-right: 3rem;
   padding-left: 1rem;
 }
 
-.mat-header-cell{
+.mat-header-cell {
   margin: 1rem;
 }
 
 .sticky {
-  z-index:999;
+  z-index: 999;
   background: #2ab4c0;
   position: fixed;
   top: 0px;
   width: 100%;
+}
+
+img {
+  max-width: 600px;
 }
