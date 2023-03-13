@@ -8,6 +8,8 @@ import { UserData } from '../login/userdata.model';
 import { Picture } from '../pictures/pictures.model';
 import { PicturesService } from '../pictures/pictures.service';
 import { Router } from '@angular/router';
+import { Question } from '../faq/faq.model';
+import { FaqService } from '../faq/faq.service';
 
 @Component({
   selector: 'app-admin',
@@ -29,20 +31,22 @@ export class AdminComponent implements OnInit {
   public newUser: UserData = new UserData();
   public passwordErrorStr: string = '';
   public passwordError: boolean = false;
+  public faqs: Question[] = [];
+  private originalFaqs: Question[] = [];
 
   @ViewChild('imageSelect') imageInputRef!: ElementRef;
   @ViewChild('userTable') userTableRef!: MatTable<any>;
 
   constructor(private eventSvc: EventsService, private pictureSvc: PicturesService, private userSvc: UserService,
-     private titleService: Title, private router: Router) { }
+    private titleService: Title, private router: Router, private faqSvc: FaqService) { }
 
   ngOnInit(): void {
     this.titleService.setTitle("Country Creek - Admin");
-    
+
     this.getEvents();
     this.getPictures();
     this.getUsers();
-
+    this.getQuestions();
   }
 
   private getEvents() {
@@ -50,9 +54,10 @@ export class AdminComponent implements OnInit {
       this.eventData = [];
       resp.forEach(event => {
         var newEvent = new Event();
-        var tempDate = new Date(event.Date);
-        var userTimezone = tempDate.getTimezoneOffset() * 60000;
-        newEvent.date = new Date(tempDate.getTime() - userTimezone);
+        // var tempDate = new Date(event.Date);
+        // var userTimezone = tempDate.getTimezoneOffset() * 60000;
+        // newEvent.date = new Date(tempDate.getTime() - userTimezone);
+        newEvent.date = new Date(event.Date);
         newEvent.description = event.Description;
         newEvent.title = event.Title;
         newEvent.id = event.Id;
@@ -255,30 +260,30 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  validatePassword(): boolean{
+  validatePassword(): boolean {
     this.passwordErrorStr = '';
 
     var regStatement = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
     var matches = this.newUser.password.match(regStatement);
-    if(!matches){
+    if (!matches) {
       this.passwordErrorStr = 'Password must be minimum eight characters, at least one letter, one number and one special character';
       this.passwordError = true;
       return false;
     }
-    
-    if(this.newUser.userName.length < 5){
+
+    if (this.newUser.userName.length < 5) {
       this.passwordErrorStr = 'User name must be 5 or more characters';
       this.passwordError = true;
       return false;
     }
 
-    if(this.newUser.firstName.length == 0){
+    if (this.newUser.firstName.length == 0) {
       this.passwordErrorStr = 'Must provide a first name';
       this.passwordError = true;
       return false;
     }
 
-    if(this.newUser.lastName.length == 0){
+    if (this.newUser.lastName.length == 0) {
       this.passwordErrorStr = 'Must provide a last name';
       this.passwordError = true;
       return false;
@@ -288,8 +293,63 @@ export class AdminComponent implements OnInit {
     return true;
   }
 
-  logout(){
+  logout() {
     sessionStorage.removeItem('ccLoginToken');
     this.router.navigate(['']);
+  }
+
+  getQuestions() {
+    this.faqSvc.getFaqs().subscribe(resp => {
+      this.faqs = [];
+      resp.forEach(faq => {
+        var newQuestion = new Question();
+        newQuestion.question = faq.Question;
+        newQuestion.answer = faq.Answer;
+        newQuestion.id = faq.Id;
+        this.faqs.push(newQuestion);
+      });
+
+      this.originalFaqs = JSON.parse(JSON.stringify(this.faqs));
+    })
+  }
+
+  addQuestion() {
+    var faq = new Question();
+    this.faqs.push(faq);
+
+  }
+
+  saveQuestion() {
+    var updateFaq: Question[] = [];
+
+    this.originalFaqs.forEach((question, idx) => {
+      if ((question != this.faqs[idx]) && (this.faqs[idx].id != 0)) {
+        //Update Data
+        if ((this.faqs[idx].question != '') || (this.faqs[idx].answer != '')) {
+          updateFaq.push({ ...this.faqs[idx] });
+        }
+      }
+    });
+
+    this.faqs.forEach((faq, idx) => {
+      if (faq.id == 0) {
+        //Save new data
+        if ((this.faqs[idx].question != '') || (this.faqs[idx].answer != '')) {
+          updateFaq.push({ ...faq });
+        }
+      }
+    })
+
+    if (updateFaq.length > 0) {
+      this.faqSvc.saveFaqs(updateFaq).subscribe(resp => {
+        this.getQuestions();
+      });
+    }
+  }
+
+  deleteQuestion(id: number) {
+    this.faqSvc.deleteFaq(id).subscribe(resp => {
+      this.getQuestions();
+    })
   }
 }

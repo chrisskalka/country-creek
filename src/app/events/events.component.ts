@@ -45,7 +45,7 @@ export class EventsComponent implements OnInit {
       resp.forEach((event) => {
         var newEvent: Event = new Event();
         newEvent.id = event.Id;
-        newEvent.date = event.Date;
+        newEvent.date = new Date(event.Date);
         newEvent.title = event.Title;
         newEvent.description = event.Description;
         this.eventData.push(newEvent);

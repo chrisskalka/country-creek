@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'country-creek';
+
+  constructor() {
+    localStorage.setItem("activeLink", "Home");
+  }
 }

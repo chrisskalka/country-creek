@@ -18,6 +18,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { PicturesService } from '../pictures/pictures.service';
 import { MatTableModule } from '@angular/material/table';
 import { UserService } from './user.service';
+import { FaqService } from '../faq/faq.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { UserService } from './user.service';
   providers: [
     EventsService,
     PicturesService,
-    UserService
+    UserService,
+    FaqService
   ],
   bootstrap: []
 })

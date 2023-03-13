@@ -2,7 +2,7 @@
     [rowHeight]="gridRowHeight">
     <mat-grid-tile *ngFor="let item of eventData">
         <mat-card>
-            <mat-card-title>{{item.date | date:"MMMM d, y, h:mm:ss a"}} - {{item.title}}</mat-card-title>
+            <mat-card-title>{{item.date | date:"MMMM d, y, h:mm a"}} - {{item.title}}</mat-card-title>
             <mat-card-content>{{item.description}}</mat-card-content>
         </mat-card>
     </mat-grid-tile>

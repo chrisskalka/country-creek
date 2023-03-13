@@ -7,12 +7,24 @@ const homeRoutes: Routes = [{
   component: MainComponent,
   children: [
     {
-      path: 'home',
+      path: 'Home',
       loadChildren: () => import('../home/home.module').then(m => m.HomeModule)
     },
     {
+      path: 'Contacts',
+      loadChildren: () => import('../contacts/contacts.module').then(m => m.ContactsModule)
+    },
+    {
+      path: 'Indentures',
+      loadChildren: () => import('../indentures/indentures.module').then(m => m.IndenturesModule)
+    },
+    {
+      path: 'FAQ',
+      loadChildren: () => import('../faq/faq.module').then(m => m.FaqModule)
+    },
+    {
       path: '',
-      redirectTo: 'home',
+      redirectTo: 'Home',
       pathMatch: 'full'
     }
   ]

@@ -146,4 +146,33 @@
         <button mat-raised-button color="primary" (click)="addUserClicked()" [disabled]="isAddUserDisabled()">Add
             New Administrator</button>
     </div>
+    <mat-divider></mat-divider>
+    <div style="margin-left: 1.5rem; margin-right: 1.5rem">
+        <h1>Frequently Asked Questions</h1>
+        <div *ngFor="let faq of faqs" fxLayout="row" fxLayoutGap="1rem">
+            <div fxFlex="50">
+                <mat-form-field appearance="fill">
+                    <mat-label>Question</mat-label>
+                    <input matInput [(ngModel)]="faq.question" autocomplete="off">
+                </mat-form-field>
+            </div>
+            <div fxFlex>
+                <mat-form-field appearance="fill">
+                    <mat-label>Answer</mat-label>
+                    <textarea matInput [(ngModel)]="faq.answer" autocomplete="off"></textarea>
+                </mat-form-field>
+            </div>
+            <div fxFlex="5">
+                <button mat-icon-button color="warn" (click)="deleteQuestion(faq.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div style="margin-bottom: 1.5rem">
+            <button mat-raised-button color="primary" (click)="addQuestion()" [disabled]="isAddDisabled()">Add
+                Question</button>
+            <button mat-raised-button color="primary" (click)="saveQuestion()" style="margin-left: 1rem">Save
+                Question</button>
+        </div>
+    </div>
 </div>

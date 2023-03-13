@@ -5,22 +5,33 @@ import { Observable } from "rxjs";
 import { Event } from "./events.model";
 
 @Injectable()
-export class EventsService{
+export class EventsService {
     private baseUrl: string = "";
 
-    constructor(private http: HttpClient){
+    constructor(private http: HttpClient) {
         this.baseUrl = `${environment.urlApiRoot}events`;
     }
 
-    getEvents(): Observable<any[]>{
+    getEvents(): Observable<any[]> {
         return this.http.get<any[]>(`${this.baseUrl}`);
     }
 
-    saveEvents(events: Event[]): Observable<boolean>{
-        return this.http.post<boolean>(this.baseUrl, events);
+    saveEvents(events: Event[]): Observable<boolean> {
+
+        var objSend: any = [];
+        events.forEach((value) => {
+            objSend.push({
+                date: value.date.toUTCString(),
+                title: value.title,
+                id: value.id,
+                description: value.description
+            })
+        });
+
+        return this.http.post<boolean>(this.baseUrl, objSend);
     }
 
-    deleteEvent(id: Number): Observable<null>{
+    deleteEvent(id: Number): Observable<null> {
         return this.http.delete<null>(this.baseUrl + "/" + id);
     }
 }

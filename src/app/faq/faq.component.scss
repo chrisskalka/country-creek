@@ -1,0 +1,95 @@
+.card {
+    padding: 16px;
+    margin: 24px;
+    border-radius: 2px;
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.87);
+    box-shadow:
+        0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 1px 5px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+    .card-title {
+        padding: 24px 16px 8px;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 32px;
+    }
+
+    p {
+        font-size: 1.6rem;
+        font-weight: 400;
+        letter-spacing: 0.010em;
+        line-height: 1.6em;
+        padding: 0 16px;
+    }
+}
+
+h1 {
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+    font-weight: bolder;
+}
+
+.mat-divider {
+    border-top-width: 1px;
+    border-top-color: black;
+}
+
+body {
+    background: lightgray;
+}
+
+.divider {
+    /* minor cosmetics */
+    display: table;
+    font-size: 24px;
+    text-align: center;
+    width: 75%;
+    /* divider width */
+    margin: 40px auto;
+    /* spacing above/below */
+}
+
+.divider span {
+    display: table-cell;
+    position: relative;
+}
+
+.divider span:first-child,
+.divider span:last-child {
+    width: 50%;
+    top: 13px;
+    /* adjust vertical align */
+    -moz-background-size: 100% 2px;
+    /* line width */
+    background-size: 100% 2px;
+    /* line width */
+    background-position: 0 0, 0 100%;
+    background-repeat: no-repeat;
+}
+
+.divider span:first-child {
+    /* color changes in here */
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(#000));
+    background-image: -webkit-linear-gradient(180deg, transparent, #000);
+    background-image: -moz-linear-gradient(180deg, transparent, #000);
+    background-image: -o-linear-gradient(180deg, transparent, #000);
+    background-image: linear-gradient(90deg, transparent, #000);
+}
+
+.divider span:nth-child(2) {
+    color: #000;
+    padding: 0px 5px;
+    width: auto;
+    white-space: nowrap;
+}
+
+.divider span:last-child {
+    /* color changes in here */
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000), to(transparent));
+    background-image: -webkit-linear-gradient(180deg, #000, transparent);
+    background-image: -moz-linear-gradient(180deg, #000, transparent);
+    background-image: -o-linear-gradient(180deg, #000, transparent);
+    background-image: linear-gradient(90deg, #000, transparent);
+}
