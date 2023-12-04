@@ -2,24 +2,24 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ContactsComponent } from './contacts.component';
-import { ContactsRoutingModule } from './contacts.route';
+import { PicturePageComponent } from './picturePage.component';
+import { PicturePageRoutingModule } from './picturePage.route';
 import { FooterModule } from '../footer/footer.module';
 import { PicturesModule } from '../pictures/pictures.module';
 import { EventsModule } from '../events/events.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
-import { ContactService } from './contacts.service';
+import { ImageService } from './image.service';
 
 @NgModule({
     declarations: [
-        ContactsComponent
+        PicturePageComponent
     ],
     imports: [
         CommonModule,
         MatCardModule,
         FlexLayoutModule,
-        ContactsRoutingModule,
+        PicturePageRoutingModule,
         PicturesModule,
         FooterModule,
         EventsModule,
@@ -27,9 +27,9 @@ import { ContactService } from './contacts.service';
         MatDividerModule
     ],
     exports: [
-        ContactsComponent
+        PicturePageComponent
     ],
-    providers: [ContactService],
+    providers: [ImageService],
     bootstrap: []
 })
-export class ContactsModule { }
+export class PicturePageModule { }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlApiRoot: 'http://localhost:58850/api/'
+  urlApiRoot: 'http://api.countrycreeksubdivision.com/api/api/'
 };
 
 /*

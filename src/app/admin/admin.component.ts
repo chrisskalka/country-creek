@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { Title } from '@angular/platform-browser';
 import { Event } from '../events/events.model';
@@ -10,13 +10,16 @@ import { PicturesService } from '../pictures/pictures.service';
 import { Router } from '@angular/router';
 import { Question } from '../faq/faq.model';
 import { FaqService } from '../faq/faq.service';
+import { Editor, Toolbar, Validators, toDoc } from 'ngx-editor';
+import { ContactService } from '../contacts/contacts.service';
+import { ImageService } from '../picturePage/image.service';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, OnDestroy {
 
   minDate: Date = new Date();
   public eventData: Event[] = [];
@@ -33,12 +36,36 @@ export class AdminComponent implements OnInit {
   public passwordError: boolean = false;
   public faqs: Question[] = [];
   private originalFaqs: Question[] = [];
+  public editor: Editor = new Editor();
+  public contactEditor: Editor = new Editor();
+  public contactInfo: string = '';
+  public imageInfo: string = '';
 
   @ViewChild('imageSelect') imageInputRef!: ElementRef;
   @ViewChild('userTable') userTableRef!: MatTable<any>;
 
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
+
   constructor(private eventSvc: EventsService, private pictureSvc: PicturesService, private userSvc: UserService,
-    private titleService: Title, private router: Router, private faqSvc: FaqService) { }
+    private titleService: Title, private router: Router, private faqSvc: FaqService, private contactSvc: ContactService,
+    private imageSvc: ImageService) {
+    this.editor = new Editor({
+      history: true
+    });
+
+    this.contactEditor = new Editor({
+      history: true
+    });
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle("Country Creek - Admin");
@@ -47,6 +74,12 @@ export class AdminComponent implements OnInit {
     this.getPictures();
     this.getUsers();
     this.getQuestions();
+    this.getContactInfo();
+    this.getImages();
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
   }
 
   private getEvents() {
@@ -350,6 +383,30 @@ export class AdminComponent implements OnInit {
   deleteQuestion(id: number) {
     this.faqSvc.deleteFaq(id).subscribe(resp => {
       this.getQuestions();
+    })
+  }
+
+  getContactInfo() {
+    this.contactSvc.getContactInfo().subscribe(resp => {
+      this.contactInfo = resp;
+    })
+  }
+
+  saveContactInfo() {
+    this.contactSvc.saveContactInfo(this.contactInfo).subscribe(resp => {
+      this.getContactInfo();
+    })
+  }
+
+  getImages() {
+    this.imageSvc.getPictures().subscribe(resp => {
+      this.imageInfo = resp;
+    })
+  }
+
+  saveImages() {
+    this.imageSvc.savePictures(this.imageInfo).subscribe(resp => {
+      this.getImages();
     })
   }
 }

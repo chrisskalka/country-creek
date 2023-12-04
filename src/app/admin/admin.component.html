@@ -175,4 +175,28 @@
                 Question</button>
         </div>
     </div>
+    <div style="margin-left: 1.5rem; margin-right: 1.5rem">
+        <h1>Contacts</h1>
+        <div class="NgxEditor__Wrapper">
+            <ngx-editor-menu [editor]="contactEditor" [toolbar]="toolbar"> </ngx-editor-menu>
+            <ngx-editor [editor]="contactEditor" height="500rem" [(ngModel)]="contactInfo">
+            </ngx-editor>
+        </div>
+        <div style="margin-bottom: 1.5rem">
+            <button mat-raised-button color="primary" (click)="saveContactInfo()" style="margin-left: 1rem">Save Contact
+                Info</button>
+        </div>
+    </div>
+    <div style="margin-left: 1.5rem; margin-right: 1.5rem">
+        <h1>Images for Picture page</h1>
+        <div class="NgxEditor__Wrapper">
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+            <ngx-editor [editor]="editor" height="500rem" [(ngModel)]="imageInfo">
+            </ngx-editor>
+        </div>
+        <div style="margin-bottom: 1.5rem">
+            <button mat-raised-button color="primary" (click)="saveImages()" style="margin-left: 1rem">Save
+                Images</button>
+        </div>
+    </div>
 </div>

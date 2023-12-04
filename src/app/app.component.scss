@@ -16,3 +16,11 @@ h1 {
 .mat-tab-label {
     font-size: 20px !important;
 }
+
+.layout-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    max-width: 22rem !important;
+    height: auto !important;
+}

@@ -23,6 +23,10 @@ const homeRoutes: Routes = [{
       loadChildren: () => import('../faq/faq.module').then(m => m.FaqModule)
     },
     {
+      path: 'Pictures',
+      loadChildren: () => import('../picturePage/picturePage.module').then(m => m.PicturePageModule)
+    },
+    {
       path: '',
       redirectTo: 'Home',
       pathMatch: 'full'
